@@ -6,6 +6,10 @@ export const useCityStore = defineStore(
   () => {
     const cities = ref([]);
 
+    if (localStorage.getItem("city")) {
+      cities.value = JSON.parse(localStorage.getItem("savedCities"));
+    }
+
     function addCity(payload) {
       if (!payload) return;
 
