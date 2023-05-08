@@ -9,7 +9,7 @@ Deployed [Link](https://weather-app-kappa-umber.vercel.app/)
 ## Project Setup
 
 ```sh
-git clone [repo](https://github.com/Aneal250/weather-app.git)
+git clone https://github.com/Aneal250/weather-app.git
 ```
 
 ### Clone the repo to your local machine
