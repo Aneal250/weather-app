@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="md:container px-4">
     <SearchForm />
     <div class="flex flex-col gap-4">
       <Suspense>

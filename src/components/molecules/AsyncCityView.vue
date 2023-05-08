@@ -2,12 +2,12 @@
   <SaveView />
 
   <!-- My Design Start -->
-  <div class="flex text-white place-items-baseline">
+  <div class="flex flex-col md:flex-row text-white place-items-baseline">
     <div>
-      <h1 class="text-4xl mb-2">
+      <h1 class="text-4xl my-2 px-2">
         {{ route.params.city }}, {{ route.params.state }}
       </h1>
-      <p class="text-sm mb-12">
+      <p class="text-sm md:mb-12 px-2 mb-2">
         {{
           new Date(weatherData.currentTime).toLocaleDateString("en-us", {
             weekday: "short",
@@ -19,36 +19,36 @@
     </div>
   </div>
   <!-- other Data -->
-  <div class="flex text-white">
+  <div class="flex flex-col md:flex-row text-white items-center">
     <img
       class="w-[150px] h-auto"
       :src="`http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`"
       alt=""
     />
 
-    <p class="text-8xl mb-8 border-r-2 mx-2 px-6">
+    <p class="text-8xl mb-8 px-6">
       {{ Math.round(weatherData.current.temp) }}&deg;
     </p>
 
-    <div class="flex flex-col mx-6">
-      <div class="mb-8">
+    <div class="flex flex-col mx-6 md:border-l-2 md:pl-8">
+      <div class="mb-8 text-center md:text-left">
         <p class="text-xl">{{ Math.round(weatherData.current.temp) }}&deg;</p>
         <p class="text-sm text-gray-400">High</p>
       </div>
 
-      <div class="mb-8">
+      <div class="mb-8 text-center md:text-left">
         <p class="text-xl">{{ weatherData.current.temp }}&deg;</p>
         <p class="text-sm text-gray-400">Low</p>
       </div>
     </div>
 
-    <div class="flex flex-col mx-6">
+    <div class="flex flex-col mx-6 text-center md:text-left">
       <div class="mb-8">
         <p class="text-xl">{{ weatherData.current.wind_speed }} mph</p>
         <p class="text-sm text-gray-400">Wind</p>
       </div>
 
-      <div class="mb-8">
+      <div class="mb-8 text-center md:text-left">
         <p class="text-xl">
           {{ (weatherData.current.pressure / 14.5).toFixed(2) }}in
         </p>
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div class="flex flex-col mx-6">
+    <div class="flex flex-col mx-6 text-center md:text-left">
       <div class="mb-8">
         <p class="text-xl">
           {{ Math.round(weatherData.current.humidity) }}&percnt;
@@ -64,7 +64,7 @@
         <p class="text-sm text-gray-400">Humidity</p>
       </div>
 
-      <div class="mb-8">
+      <div class="mb-8 text-center md:text-left">
         <p class="text-xl">
           {{ Math.round(weatherData.current.dew_point) }}&deg;
         </p>
@@ -74,12 +74,12 @@
   </div>
 
   <!-- Today's weather -->
-  <div class="max-w-screen-md w-full py-12">
+  <div class="md:max-w-screen-md py-12 w-[400px] md:w-full">
     <div class="mx-8 text-white">
       <h2 class="mb-4">Today's Weather</h2>
-      <div class="flex gap-6 overflow-x-scroll">
+      <div class="flex gap-6 overflow-x-scroll w-full">
         <div
-          v-for="hourData in weatherData.hourly"
+          v-for="hourData in weatherData.hourly.splice(0, 9)"
           :key="hourData.dt"
           class="flex flex-col gap-4 items-center bg-gray-900/50 px-6 py-2 rounded-lg"
         >
@@ -103,13 +103,13 @@
 
   <!-- Next 3 Days Weather -->
 
-  <div class="max-w-screen-md w-full py-12">
+  <div class="max-w-screen-md py-12 md:max-w-screen-md w-[400px] md:w-full">
     <div class="mx-8 text-white">
       <h2 class="mb-4">Next 3 days Weather</h2>
       <div
         v-for="day in weatherData.daily.splice(0, 3)"
         :key="day.dt"
-        class="flex items-center bg-gray-900/50 px-6 py-2 my-2 justify-between"
+        class="flex items-center bg-gray-900/50 px-6 py-2 my-2 justify-between overflow-x-scroll"
       >
         <p class="w-1/6">
           {{
@@ -135,7 +135,8 @@
           <p class="text-sm text-gray-400">Low</p>
         </div>
         <div class="w-1/6 justify-end">
-          <p>{{ day.rain }}&percnt;</p>
+          <p v-if="day.rain">{{ day.rain }}&percnt;</p>
+          <p v-else-if="!day.rain">0&percnt;</p>
           <p class="text-sm text-gray-400">Rain</p>
         </div>
 

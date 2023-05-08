@@ -13,5 +13,15 @@ export const useCityStore = defineStore(
     }
     return { cities, addCity };
   },
-  { persist: true }
+  {
+    persist: {
+      enabled: true,
+      strategies: [
+        {
+          key: "city",
+          storage: localStorage,
+        },
+      ],
+    },
+  }
 );
