@@ -1,29 +1,51 @@
-# weather app
+## Project
 
-This template should help get you started developing with Vue 3 in Vite.
+### weather app
 
-## Recommended IDE Setup
+This simple weather software can be used to check the local weather depending on a certain area. The app displays a thorough description of a specific location.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Deployed [Link](https://weather-app-kappa-umber.vercel.app/)
 
 ## Project Setup
+
+```sh
+git clone [repo](https://github.com/Aneal250/weather-app.git)
+```
+
+### Clone the repo to your local machine
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Use npm install to install all the necessary dependencies.
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Run the app Locally using `npm run dev`
 
 ```sh
 npm run build
 ```
+
+### Compile and Minify for Production
+
+## Technologies | APIs
+
+1. vue3 (Option API)[https://vuejs.org/guide/introduction.html]
+2. Pinia (Pinia)[https://pinia.vuejs.org/]
+3. [Openweather API](https://api.openweathermap.org)
+4. [Map box Api](https://www.mapbox.com)
+
+### Notes | Challenges
+
+1. In particular, the dynamic routing page of the fetched location presented some difficulties when I tried to manipulate the endpoint to obtain the data I needed to display on the UI. I needed assistance, so I had to read the documentation carefully.
+
+2. I used Pinia, against the vuex, that was asked to use, reasons; Pinia is now vue's default state management and is almost as simple to implement as redux toolkit when using redux, the instructions said I should use Vuex.
+
+### New Features to Implement
+
+1. Automatic location detection: With the help of this capability, the user can retrieve and find a single location.
+2. Weather Visualizations With Stunning Maps
